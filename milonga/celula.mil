@@ -1,0 +1,77 @@
+# Script para teste de malha com as seções de choque
+# externas WIMS para BOL e ano2004
+
+MESH NAME celula DIMENSIONS 3 FILE_PATH ../../malhas/celula.msh
+
+MILONGA_PROBLEM FORMULATION diffusion GROUPS 2
+
+#INCLUDE $1.mil
+
+FUNCTION T(x,y,z) MESH celula CELLS VECTOR vec_T
+vec_T = 350.0
+
+
+INCLUDE functions_wims.was
+
+MATERIAL fuel {
+D1	     d_1_fuel(T(x,y,z))
+SigmaA1      SigmaA_1_fuel(T(x,y,z))
+nuSigmaF1    SigmanuF_1_fuel(T(x,y,z))
+eSigmaF1     nuSigmaF1(x,y,z)
+SigmaS1.2    SigmaS1.2_fuel(T(x,y,z))
+
+D2           d_2_fuel(T(x,y,z))
+SigmaA2      SigmaA_2_fuel(T(x,y,z))
+nuSigmaF2    SigmanuF_2_fuel(T(x,y,z))(T(x,y,z))
+eSigmaF2     nuSigmaF2(x,y,z)
+}
+
+MATERIAL cladding {
+D1	     d_1_cladding(T(x,y,z))
+SigmaA1      SigmaA_1_cladding(T(x,y,z))
+SigmaS1.2    SigmaS1.2_cladding(T(x,y,z))
+
+D2           d_2_cladding(T(x,y,z))
+SigmaA2      SigmaA_2_cladding(T(x,y,z))
+}
+
+MATERIAL coolant {
+D1	     d_1_coolant(T(x,y,z))
+SigmaA1      SigmaA_1_coolant(T(x,y,z))
+SigmaS1.2    SigmaS1.2_coolant(T(x,y,z))
+
+D2           d_2_coolant(T(x,y,z))
+SigmaA2      SigmaA_2_coolant(T(x,y,z))
+}
+
+# define boundary conditions as requested by the problem, applied
+PHYSICAL_ENTITY NAME inlet    BC vacuum
+PHYSICAL_ENTITY NAME outlet   BC vacuum
+PHYSICAL_ENTITY NAME extremos BC vacuum
+PHYSICAL_ENTITY NAME parede   BC mirror
+
+# numerical stabilization factor
+#   0 = diamond differences
+#   1 = full upwinding
+sn_alpha = 0.75
+power = 3968 # potencia em Watts de um combustível
+
+PRINT TEXT "-------    ------      -----       --       -"
+PRINT TEXT "diffusion $1 :: finite volumes 3D"
+PRINT "building..."
+MILONGA_STEP JUST_BUILD
+PRINT "solving..."
+MILONGA_STEP JUST_SOLVE
+
+MILONGA_DEBUG FILE_PATH celula-$1
+
+# report the keff
+PRINT TEXT "keff         = " %.5f keff TEXT "    (" %.1f 1e5*(1-1/keff) TEXT "pcm )" SEP " "
+PRINT TEXT "problem size = " %.0f unknowns TEXT "x" unknowns SEP " "
+PRINT TEXT "CPU [secs]   =  init " %.2f time_cpu_ini TEXT ", build "time_cpu_build TEXT ", solve" time_cpu_solve SEP " "
+PRINT TEXT "memory [Mb]  = " %.0f memory_usage_global/(2^20) SEP " "
+
+
+PRINT_FUNCTION FILE_PATH celula-$1.dat pow phi1
+MESH_POST FILE_PATH celula-$1.vtk pow phi1
+

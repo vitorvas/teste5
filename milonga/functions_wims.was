@@ -1,0 +1,138 @@
+### Interpolation functions
+# Source: WIMS model
+
+# Diffusion coefficients
+
+FUNCTION d_1_fuel(x) DATA {
+300 0.0108349
+400 0.0108521
+500 0.0108489
+600 0.010846
+}
+
+FUNCTION d_2_fuel(x) DATA {
+300 0.00314942
+400 0.0031682
+500 0.0032163
+600 0.0032743
+}
+
+FUNCTION d_1_cladding(x) DATA {
+300 0.0299644
+400 0.0299699
+500 0.0299678
+600 0.0299659
+}
+
+FUNCTION d_2_cladding(x) DATA {
+300 0.0376276
+400 0.0376721
+500 0.0377696
+600 0.0379140
+}
+
+FUNCTION d_1_coolant(x) DATA {
+300 0.0126587
+400 0.0126685
+500 0.0126696
+600 0.0126705
+}
+
+FUNCTION d_2_coolant(x) DATA {
+300 0.00213616
+400 0.0021262
+500 0.0021368
+600 0.0021589
+}
+
+### Absorbtion cross-sections
+
+FUNCTION SigmaA_1_fuel(x) DATA {
+300 0.771135
+400 0.783626
+500 0.795686
+600 0.806567
+}
+
+FUNCTION SigmaA_2_fuel(x) DATA {
+300 11.0389
+400 10.8142
+500 10.4004
+600 9.90199
+}
+
+FUNCTION SigmaA_1_cladding(x) DATA {
+300 0.0288617
+400 0.028926
+500 0.0289199
+600 0.0289143
+}
+
+FUNCTION SigmaA_2_cladding(x) DATA {
+300 0.874322
+400 0.865956
+500 0.846858
+600 0.818690
+}
+
+FUNCTION SigmaA_1_coolant(x) DATA {
+300 0.0290925
+400 0.0292130
+500 0.0292018
+600 0.0291917
+}
+
+FUNCTION SigmaA_2_coolant(x) DATA {
+300 1.42651
+400 1.41891
+500 1.39505
+600 1.35409
+}
+
+### Fission neutron production cross-sections
+
+FUNCTION SigmanuF_1_fuel(x) DATA {
+300 0.500982
+400 0.500304
+500 0.500377
+600 0.500441
+}
+# Os valores de nuSigmaF1 não são lineares.
+
+FUNCTION SigmanuF_2_fuel(x) DATA {
+300 20.1943
+400 19.7703
+500 18.9898
+600 18.0499
+}
+
+### Scattering cross-sections
+# No upscattering
+# No scattering intra groups
+
+# All values are the same:
+# Source for scattering are from homogeneized cells
+
+FUNCTION SigmaS1.2_fuel(x) DATA {
+300 3.3991
+400 3.4329
+500 3.4264
+600 3.4206
+}
+# Também não são lineares
+
+FUNCTION SigmaS1.2_cladding(x) DATA {
+300 3.3991
+400 3.4329
+500 3.4264
+600 3.4206
+}
+
+
+FUNCTION SigmaS1.2_coolant(x) DATA {
+300 3.3991
+400 3.4329
+500 3.4264
+600 3.4206
+}
+
