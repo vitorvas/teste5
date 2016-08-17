@@ -1,0 +1,15 @@
+
+
+Wall heat fluxes [W]
+coolant_to_cladding 3982.8
+
+
+
+Wall heat fluxes [W]
+cladding_to_fuel 3964.75
+cladding_to_coolant -3981.85
+
+
+Wall heat fluxes [W]
+fuel_to_cladding -3965.13
+
