@@ -1,11 +1,31 @@
-Caso de cálculo acoplado OpenFOAM - milonga
+Coupled simulation case: OpenFOAM - milonga
 
-- Convergência funcionando.
-- Testado com Q uniforme.
-- Testado para malha original (celula.msh).
-- Balanço de massa fecha com diferença na segunda casa decimal.
-
-Esse é o caso extra para a submissão do paper referente à tese.
+This is an OpenFOAM case.
 
 
+-------------------------------------------------------------------
+
+Running instructions:
+
+1) go to <milonga> directory and call:
+
+[bash]$ milonga trigarod.mil > log.milonga & <ENTER>
+
+This will start milonga and it will hold until OpenFOAM starts.
+
+2) go back to case directory and run OpenFOAM solver:
+
+[bash]$ cd ../ <ENTER>
+[bash]$ thesisCoupledFoam > log.openfoam & <ENTER>
+
+-------------------------------------------------------------------
+
+To follow the log of any code, type in the command-line
+for OpenFOAM output:
+
+[bash]$ tail -f log.openfoam <ENTER>
+
+for milonga output:
+
+[bash]$ tail -f milonga/log.milonga <ENTER>
 
