@@ -104,15 +104,15 @@ SigmaA2      SigmaA_2_coolant(T(x,y,z))
 }
 PRINT TEXT " done."
 
-PHYSICAL_ENTITY NAME parede BC mirror
 PHYSICAL_ENTITY NAME extremos BC vacuum
 PHYSICAL_ENTITY NAME inlet BC vacuum
 PHYSICAL_ENTITY NAME outlet BC vacuum
+PHYSICAL_ENTITY NAME parede BC mirror
 
 # O mesmo do OpenFOAM
 # 1.138e+07 Q/m^3
 # 3965 Q
-
+sn_alpha = 0.75
 power = 3965.0 
 
 # PRINT TEXT "These two should be equal: " SigmaT1(0,0,0) SigmaA_1_fuel(T(0,0,0))
@@ -126,7 +126,10 @@ PRINT "\# solving..." NONEWLINE
 MILONGA_STEP JUST_SOLVE
 PRINT TEXT " done."
 
-PRINT "\# cpu time [sec] = "  %.2f time_cpu_build "(build) "  %.2f time_cpu_solve "(solve)"  SEP " "
+PRINT TEXT "keff         = " %.5f keff TEXT "    (" %.1f 1e5*(1-1/keff) TEXT "pcm )" SEP " "
+PRINT TEXT "problem size = " %.0f unknowns TEXT "x" unknowns SEP " "
+PRINT TEXT "CPU [secs]   =  init " %.2f time_cpu_ini TEXT ", build "time_cpu_build TEXT ", solve" time_cpu_solve SEP " "
+PRINT TEXT "memory [Mb]  = " %.0f memory_usage_global/(2^20) SEP " "
 
 #mypow(x,y,z) := pow(x,y,z)*power
 

@@ -5,10 +5,10 @@ MESH NAME celula DIMENSIONS 3 FILE_PATH ../../malhas/celula.msh
 
 MILONGA_PROBLEM FORMULATION diffusion GROUPS 2
 
-#INCLUDE $1.mil
+#INCLUDE 300.mil
 
 FUNCTION T(x,y,z) MESH celula CELLS VECTOR vec_T
-vec_T = 350.0
+vec_T = $1
 
 
 INCLUDE functions_wims.was
@@ -53,8 +53,8 @@ PHYSICAL_ENTITY NAME parede   BC mirror
 # numerical stabilization factor
 #   0 = diamond differences
 #   1 = full upwinding
-sn_alpha = 0.75
-power = 3968 # potencia em Watts de um combustível
+sn_alpha = 1 #0.75
+power = 3965.0 # potencia em Watts de um combustível
 
 PRINT TEXT "-------    ------      -----       --       -"
 PRINT TEXT "diffusion $1 :: finite volumes 3D"
@@ -72,6 +72,6 @@ PRINT TEXT "CPU [secs]   =  init " %.2f time_cpu_ini TEXT ", build "time_cpu_bui
 PRINT TEXT "memory [Mb]  = " %.0f memory_usage_global/(2^20) SEP " "
 
 
-PRINT_FUNCTION FILE_PATH celula-$1.dat pow phi1
-MESH_POST FILE_PATH celula-$1.vtk pow phi1
+PRINT_FUNCTION FILE_PATH celula-$1.dat T(x,y,z) pow phi1
+MESH_POST FILE_PATH celula-$1.vtk T(x,y,z) pow phi1
 
