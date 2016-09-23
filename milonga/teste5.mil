@@ -1,12 +1,14 @@
-#MILONGA_DEBUG FILE_PATH teste5
 
-# 21/07/2016
+# 23/09/2016
 #
 # Script for teste5 case.
 #
 # Set transient time to infinite, so milonga will
 # wait for OpenFOAM until it ends.
 # end_time = infinite
+#
+# Write T() and Q()
+
 static_steps = 10000000
 
 # Make dt = 1. This does not affect milonga calculations
@@ -140,7 +142,7 @@ WRITE SHM_OBJECT potencias vec_Q
 SEM calcMil POST
 
 PRINT TEXT "\# Writing vtk file..." NONEWLINE
-MESH_POST FILE_PATH teste5.vtk pow phi1
+MESH_POST FILE_PATH teste5.vtk pow phi1 T(x,y,z) Q(x,y,z)
 PRINT TEXT " done."
 
 ENDIF
