@@ -128,7 +128,7 @@ PRINT "\# solving..." NONEWLINE
 MILONGA_STEP JUST_SOLVE
 PRINT TEXT " done."
 
-PRINT TEXT "keff         = " %.5f keff TEXT "    (" %.1f 1e5*(1-1/keff) TEXT "pcm )" SEP " "
+PRINT TEXT "keff         = " %.5f keff
 PRINT TEXT "problem size = " %.0f unknowns TEXT "x" unknowns SEP " "
 PRINT TEXT "CPU [secs]   =  init " %.2f time_cpu_ini TEXT ", build "time_cpu_build TEXT ", solve" time_cpu_solve SEP " "
 PRINT TEXT "memory [Mb]  = " %.0f memory_usage_global/(2^20) SEP " "
