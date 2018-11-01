@@ -31,7 +31,7 @@ boundaryField
         type            compressible::turbulentTemperatureCoupledBaffleMixed;
         value           uniform 300;
         Tnbr            T;
-        kappa           solidThermo;
+        kappaMethod           solidThermo; // Modificado OF 6
         kappaName       none;
     }
 }

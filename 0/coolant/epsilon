@@ -37,7 +37,7 @@ boundaryField
     }
     coolant_to_cladding
     {
-        type            compressible::epsilonWallFunction;
+      type              epsilonWallFunction; // Modificado para OF 6
         value           uniform 0.03;
     }
 }

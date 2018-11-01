@@ -1,7 +1,7 @@
 /*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
-|  \\    /   O peration     | Version:  2.4.x                                 |
+|  \\    /   O peration     | Version:  2.2.2                                 |
 |   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
@@ -10,38 +10,56 @@ FoamFile
     version     2.0;
     format      ascii;
     class       volScalarField;
-    location    "0/coolant";
-    object      T;
+    location    "0";
+    object      mut;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-dimensions      [ 0 0 0 1 0 0 0 ];
+dimensions      [1 -1 -1 0 0 0 0];
 
-internalField   uniform 300;
+internalField   uniform 0;
 
 boundaryField
 {
-    inlet
-    {
-        type            fixedValue;
-        value           uniform 300;
-    }
     parede
     {
-        type            symmetry;
+	type symmetry;
+      // type            wall;
+      // value uniform 0;
+    }
+    extremos
+    {
+        type            wall;
+	value		uniform 0;
+    }
+    inlet
+    {
+        type            calculated;
+        value           uniform 0;
     }
     outlet
     {
-        type            zeroGradient;
+        type            calculated;
+        value           uniform 0;
     }
     coolant_to_cladding
     {
-        type            compressible::turbulentTemperatureCoupledBaffleMixed;
-        value           uniform 300;
-        Tnbr            T;
-        kappaMethod     fluidThermo; // Modificado para OF6
-        kappaName       none;
+        type            mutkWallFunction;
+        Cmu             0.09;
+        kappa           0.41;
+        E               9.8;
+        value           uniform 0;
     }
+
+    fc
+    {
+	type zeroGradient;
+    }
+    cc
+    {
+	type zeroGradient;
+    }
+
 }
 
 

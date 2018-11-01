@@ -171,7 +171,7 @@ dictionaryReplacement
         }
     }
 
-    mut
+    nut // Modificado para OF 6
     {
         internalField   uniform 0;
 
@@ -179,7 +179,7 @@ dictionaryReplacement
         {
             ".*"
             {
-                type            mutkWallFunction;
+                type            nutkWallFunction;
 		Cmu             0.09;
 		kappa           0.41;
 		E               9.8;

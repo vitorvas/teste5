@@ -37,7 +37,7 @@ boundaryField
     }
     coolant_to_cladding
     {
-        type            compressible::kqRWallFunction;
+        type              kqRWallFunction; // Modificado OF 6
         value           uniform 0.001;
     }
 }

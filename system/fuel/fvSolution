@@ -24,6 +24,23 @@ solvers
         relTol           0.01;
 	minIter          1;
     }
+
+    // Modificado OF 6
+    "(U|h|k|epsilon|R)Final"
+    {
+      solver           PCG; // Modificado OF 6
+      preconditioner   DIC;
+      $U;
+      tolerance        1e-07;
+      relTol           0;
+    }
+
+}
+
+// Adicionado OF 6
+PIMPLE
+{
+  nOuterCorrectors 1; // Se comentar esta linha também roda.
 }
 
 SIMPLE

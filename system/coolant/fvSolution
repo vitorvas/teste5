@@ -53,6 +53,14 @@ solvers
         relTol           0.01;
     }
 
+    // Modificado OF 6
+    "(U|h|k|epsilon|R)Final"
+    {
+        $U;
+        tolerance        1e-07;
+        relTol           0;
+    }
+
     // h tem caracteristicas especiais: garantir que a equação
     // será sempre resolvida, mesmo se já convergiu
     h
@@ -65,6 +73,12 @@ solvers
 	// Força ao menos uma iteração
 	minIter          1;
     }
+}
+
+// Adicionado OF 6
+PIMPLE
+{
+  nOuterCorrectors 0; // Se comentar esta linha também roda.
 }
 
 SIMPLE
