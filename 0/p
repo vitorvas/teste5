@@ -34,10 +34,12 @@ boundaryField
     inlet
     {
         type            calculated;
+	value		uniform 0;
     }
     outlet
     {
         type            calculated;
+	value		uniform 0;
     }
 
     cladding_to_coolant

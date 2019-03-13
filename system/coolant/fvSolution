@@ -76,21 +76,24 @@ solvers
 }
 
 // Adicionado OF 6
-PIMPLE
-{
-  nOuterCorrectors 0; // Se comentar esta linha também roda.
-}
+//PIMPLE
+//{
+//  nOuterCorrectors 0; // Se comentar esta linha também roda.
+//}
 
-SIMPLE
+//SIMPLE
+PIMPLE
 {
   // Consistent yes significa método SIMPLEC
   //  consistent      yes;
+  nOuterCorrectors 0;
+
   momentumPredictor on;
   nNonOrthogonalCorrectors 1; //0; 
   pRefCell        0;
   pRefValue       1750000;
-  rhoMin          rhoMin [1 -3 0 0 0] 900; //300; 
-  rhoMax          rhoMax [1 -3 0 0 0] 1100; ////1e9; //1200;
+  pMin            900; //300; 
+  pMax            1100; ////1e9; //1200;
   
   residualControl
     {
